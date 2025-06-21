@@ -1,5 +1,5 @@
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = "c05d1c927a4b60ec1fff7ff01f5c3d8d";
 
 export const getNowPlayingMovies = async () => {
   const api = await fetch(
@@ -19,7 +19,7 @@ export const getGenres = async () => {
 
 export const getMoviesByGenre = async (genreId, page = 1) => {
   const res = await fetch(
-    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`
+    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${page}&language=en-US`
   );
   const data = await res.json();
   return data;
