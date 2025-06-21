@@ -92,7 +92,9 @@ export default function MovieDetailPage() {
                 {movie.status}
               </span>
             </div>
-            <div className="my-3">Released Date: {movie.release_date}</div>
+            {movie.release_date && (
+              <div className="my-3">Released Date: {movie.release_date}</div>
+            )}
             <div>
               <StarRating rating={movie.vote_average} align="justify-start" />
             </div>
