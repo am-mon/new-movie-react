@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+@import "tailwindcss";
+
+body {
+  font-size: 18px;
+  line-height: 1.5em;
+  font-family: "Poppins", sans-serif;
+  @media (max-width: 640px) {
+    font-size: 16px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+a:hover img {
+  opacity: 0.8;
+}
+
+.logo_text {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.title_font {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply text-green-700;
+}
+
+ul.pagination li a {
+  padding: 5px 10px !important;
+  min-width: 35px !important;
+  text-align: center;
+  display: block !important;
+}
+ul.pagination li a:hover {
+  @apply bg-green-700;
+  @apply text-white;
+}
