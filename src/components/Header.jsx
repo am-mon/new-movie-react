@@ -39,7 +39,7 @@ export default function Header() {
           <div className="flex items-center justify-end md:hidden text-right w-[50%]">
             <button
               onClick={toggleMobileSearch}
-              className="cursor-pointer text-2xl text-green-700 px-3 text-3xl"
+              className="cursor-pointer text-2xl text-green-700 px-1 text-3xl"
             >
               <LuSearch />
             </button>

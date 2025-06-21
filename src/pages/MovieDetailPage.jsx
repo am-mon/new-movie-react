@@ -65,7 +65,7 @@ export default function MovieDetailPage() {
         </Link>
       </div>
 
-      <div className="container mx-auto mb-14 px-4">
+      <div className="container mx-auto mb-18 px-4">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="md:w-[35%]">
             <div
@@ -126,7 +126,7 @@ export default function MovieDetailPage() {
         <div className="bg-black">
           <div className="container mx-auto py-10 px-4">
             <div
-              className={`grid gap-5 md:gap-10 ${
+              className={`grid gap-10 ${
                 video.length === 1
                   ? "grid-cols-1"
                   : video.length === 2
@@ -152,16 +152,18 @@ export default function MovieDetailPage() {
         </div>
       )}
 
-      <div className="container mx-auto my-20 px-4">
-        <h2 className="mb-14 font-bold text-center text-green-700 text-3xl md:text-4xl">
-          Starring In This Movie
-        </h2>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-5">
-          {cast.map((c) => (
-            <CastCard cast={c} key={c.cast_id} />
-          ))}
+      {cast.length > 0 && (
+        <div className="container mx-auto my-20 px-4">
+          <h2 className="mb-14 font-bold text-center text-green-700 text-3xl md:text-4xl">
+            Starring In This Movie
+          </h2>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-5">
+            {cast.map((c) => (
+              <CastCard cast={c} key={c.cast_id} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
