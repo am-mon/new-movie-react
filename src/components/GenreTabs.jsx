@@ -5,12 +5,14 @@ import ReactPaginate from "react-paginate";
 import { getGenres, getMoviesByGenre } from "../api/omdb";
 import MovieList from "./MovieList";
 import Loader from "./Loader";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi"; // Heroicons
 
 export default function GenreTabs() {
   const { state, dispatch } = useContext(MovieContext);
   const { genre, movies, loading, currentPage, error } = state;
   const [totalPages, setTotalPages] = useState(1);
   const [genres, setGenres] = useState([]);
+  const [showTabs, setShowTabs] = useState(false);
 
   const tabsRef = useRef(null);
 
@@ -55,6 +57,8 @@ export default function GenreTabs() {
       top: top - 20,
       behavior: "smooth",
     });
+
+    setShowTabs(false);
   };
 
   const handlePageChange = (selected) => {
@@ -72,7 +76,26 @@ export default function GenreTabs() {
 
   return (
     <div ref={tabsRef} className="py-2 md:py-0">
-      <div className="flex flex-wrap justify-center gap-2 md:mb-3">
+      <div className="md:hidden text-center">
+        <button
+          onClick={() => setShowTabs(!showTabs)}
+          className="mb-5 px-4 py-2 w-[50%] bg-green-700 text-white rounded-full flex items-center justify-center gap-2 mx-auto"
+        >
+          {showTabs ? "Hide Genres" : "Select Genre"}
+          {showTabs ? <HiChevronUp size={20} /> : <HiChevronDown size={20} />}
+        </button>
+
+        {!showTabs && (
+          <h3 className="mt-6 text-2xl font-semibold text-green-800 flex items-center justify-center gap-2">
+            {genre?.name ? `${genre.name} Movies` : "Select a Genre"}
+          </h3>
+        )}
+      </div>
+      <div
+        className={`${
+          showTabs ? "flex" : "hidden"
+        } md:flex flex-wrap justify-center gap-2 md:mb-3`}
+      >
         {genres.map((g) => (
           <button
             key={g.id}
@@ -88,7 +111,7 @@ export default function GenreTabs() {
         ))}
       </div>
 
-      <div className="pt-12">
+      <div className="pt-8 md:pt-12">
         <MovieList movies={movies} />
       </div>
 
