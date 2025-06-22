@@ -20,7 +20,7 @@ export default function StarRating({ rating, align = "justify-center" }) {
           ))}
         </div>
       </div>
-      <div className="text-sm md:text-base">({rating.toFixed(1)})</div>
+      <div className="text-sm md:text-base">({(rating / 2).toFixed(1)})</div>
     </div>
   );
 }
