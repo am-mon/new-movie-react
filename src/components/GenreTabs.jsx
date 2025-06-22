@@ -49,6 +49,7 @@ export default function GenreTabs() {
 
   const selectGenre = (g) => {
     dispatch({ type: "SET_GENRE", payload: g });
+
     const top = tabsRef.current?.offsetTop || 0;
     window.scrollTo({
       top: top - 20,
@@ -70,23 +71,21 @@ export default function GenreTabs() {
   if (!movies.length) return null;
 
   return (
-    <div ref={tabsRef} className="pt-3 md:pt-10 mt-[-3rem]">
-      <div className="overflow-x-auto md:overflow-x-visible py-2 md:py-0">
-        <div className="flex md:flex-wrap md:justify-center gap-2 md:mb-3">
-          {genres.map((g) => (
-            <button
-              key={g.id}
-              onClick={() => selectGenre(g)}
-              className={`whitespace-nowrap md:text-lg px-3 md:px-4 py-2 rounded-full font-bold cursor-pointer hover:bg-green-700 hover:text-white border md:border-2 border-green-400 ${
-                genre?.id === g.id
-                  ? "bg-green-700 text-white"
-                  : "text-green-800"
-              }`}
-            >
-              {g.name}
-            </button>
-          ))}
-        </div>
+    <div ref={tabsRef} className="py-2 md:py-0">
+      <div className="flex flex-wrap justify-center gap-2 md:mb-3">
+        {genres.map((g) => (
+          <button
+            key={g.id}
+            onClick={() => selectGenre(g)}
+            className={`whitespace-nowrap md:text-lg px-3 py-1 md:px-4 md:py-2 rounded-full font-bold cursor-pointer hover:bg-green-700 hover:text-white border md:border-2 border-green-400 ${
+              genre?.id === g.id
+                ? "bg-green-700 text-white active-tab"
+                : "text-green-800"
+            }`}
+          >
+            {g.name}
+          </button>
+        ))}
       </div>
 
       <div className="pt-12">
