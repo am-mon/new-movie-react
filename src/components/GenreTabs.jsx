@@ -66,7 +66,7 @@ export default function GenreTabs() {
     });
   };
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
   if (error) return <p className="text-center">{error}</p>;
   if (!movies.length) return null;
 
