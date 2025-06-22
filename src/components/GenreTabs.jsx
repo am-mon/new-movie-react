@@ -4,6 +4,7 @@ import { MovieContext } from "../context/MovieContext";
 import ReactPaginate from "react-paginate";
 import { getGenres, getMoviesByGenre } from "../api/omdb";
 import MovieList from "./MovieList";
+import Loader from "./Loader";
 
 export default function GenreTabs() {
   const { state, dispatch } = useContext(MovieContext);
@@ -64,20 +65,28 @@ export default function GenreTabs() {
     });
   };
 
+  if (loading) return <Loader />;
+  if (error) return <p className="text-center">{error}</p>;
+  if (!movies.length) return null;
+
   return (
     <div ref={tabsRef} className="pt-3 md:pt-10 mt-[-3rem]">
-      <div className="flex flex-wrap justify-center gap-2 md:mb-3">
-        {genres.map((g) => (
-          <button
-            key={g.id}
-            onClick={() => selectGenre(g)}
-            className={`md:text-lg px-2 py-1 md:px-4 md:py-2 rounded-full font-bold cursor-pointer hover:bg-green-700 hover:text-white border md:border-2 border-green-400 ${
-              genre?.id === g.id ? "bg-green-700 text-white" : "text-green-800"
-            }`}
-          >
-            {g.name}
-          </button>
-        ))}
+      <div className="overflow-x-auto md:overflow-x-visible py-2 md:py-0">
+        <div className="flex md:flex-wrap md:justify-center gap-2 md:mb-3">
+          {genres.map((g) => (
+            <button
+              key={g.id}
+              onClick={() => selectGenre(g)}
+              className={`whitespace-nowrap md:text-lg px-3 md:px-4 py-2 rounded-full font-bold cursor-pointer hover:bg-green-700 hover:text-white border md:border-2 border-green-400 ${
+                genre?.id === g.id
+                  ? "bg-green-700 text-white"
+                  : "text-green-800"
+              }`}
+            >
+              {g.name}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="pt-12">

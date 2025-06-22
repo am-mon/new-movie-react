@@ -8,20 +8,34 @@ import { Autoplay, Parallax, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/parallax";
 import "swiper/css/navigation";
+import Loader from "./Loader";
 
 export default function Banner() {
   const [movies, setMovies] = useState([]);
   const IMAGE_BASE = "https://image.tmdb.org/t/p/original/";
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    const fetchMovie = async () => {
-      const data = await getNowPlayingMovies();
-      setMovies(data);
-      // console.log(data);
+    setLoading(true);
+
+    const fetchData = async () => {
+      try {
+        const data = await getNowPlayingMovies();
+        setMovies(data);
+        // console.log(data);
+      } catch (error) {
+        setError("Failed to load movies.");
+      }
     };
-    fetchMovie();
+    fetchData();
+
+    setLoading(false);
   }, []);
 
+  if (loading) return <Loader />;
+  if (error) return <p className="text-center">{error}</p>;
   if (!movies.length) return null;
 
   return (
