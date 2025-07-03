@@ -30,12 +30,13 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <AnalyticsTracker />
       <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/movies/:id" element={<MovieDetailPage />} />
-          <Route path="/cast/:id" element={<CastDetailPage />} />
-          <Route path="/search" element={<SearchResults />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="movies/:id" element={<MovieDetailPage />} />
+          <Route path="cast/:id" element={<CastDetailPage />} />
+          <Route path="search" element={<SearchResults />} />
         </Route>
       </Routes>
     </BrowserRouter>
